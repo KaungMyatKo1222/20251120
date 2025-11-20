@@ -1,0 +1,208 @@
+@charset "UTF-8";
+@import "https://unpkg.com/ress/dist/ress.min.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f5f5; /* Changed to a softer gray for a shop feel */
+  text-align: center;
+  line-height: 1.6; /* Improved readability for notes */
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom; /* Removes small gap under images */
+}
+
+header,
+footer {
+  background: white;
+  padding: 20px;
+}
+
+main {
+  background: #f5f5f5;
+}
+
+section {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section + section {
+  margin-top: 100px;
+}
+
+section p {
+  width: 100%;
+  max-width: 80%;
+  margin: 20px auto; /* Added spacing */
+  line-height: 2;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 1em;
+  letter-spacing: 0.2em;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+/* Decorative underline for titles */
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background-color: #333;
+}
+
+/*==============================*/
+/* #first-view (Hero Section)   */
+/*==============================*/
+
+#first-view {
+  width: 100%;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+#first-view img {
+  width: 100%;
+  height: 500px; /* Fixed height for hero */
+  object-fit: cover; /* Crop image nicely */
+}
+
+/* Button Style */
+.btn {
+  display: inline-block;
+  background: #333;
+  color: white;
+  min-width: 300px;
+  padding: 15px 0;
+  font-size: 18px;
+  margin-top: -40px; /* Overlap the image slightly */
+  position: relative;
+  z-index: 2;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn::after {
+  content: "→";
+  margin-left: 10px;
+}
+
+/*==============================*/
+/* #product (UPDATED)           */
+/*==============================*/
+
+/* Container for the product grid */
+.imgs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 860px;
+  margin: 40px auto 0;
+  justify-content: center;
+}
+
+/* NEW: Product Item Wrapper 
+   We wrapped images in div.product-item to add text notes below them.
+*/
+.product-item {
+    width: 200px; /* Fixed width for the grid logic */
+    background: white;
+    padding-bottom: 10px;
+    margin-bottom: 20px; /* Spacing for mobile/wrapping */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.product-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Notes/Text inside product */
+.product-note {
+    padding: 10px 15px 0;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.4;
+}
+.product-price {
+    padding: 0 15px;
+    font-size: 13px;
+    color: #666;
+    margin: 5px 0 0;
+}
+
+/* Desktop Grid Logic (min-width: 900px) */
+@media (min-width: 900px) {
+    .product-item {
+         margin-bottom: 0; /* Reset standard margin */
+    }
+    /* Add margin to everything except the 1st item */
+    .product-item:nth-of-type(n + 2) {
+      margin-left: 20px;
+    }
+    /* Add top margin to the 2nd row (items 5+) */
+    .product-item:nth-of-type(n + 5) {
+      margin-top: 20px;
+    }
+    /* Reset left margin for the first item of each row (1st, 5th, 9th...) */
+    .product-item:nth-of-type(4n + 5) {
+      margin-left: 0;
+    }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 899px) {
+    .product-item {
+        margin: 10px; /* Simple spacing for mobile */
+        width: 45%; /* 2 columns on tablet/mobile */
+    }
+    .imgs {
+        justify-content: center;
+    }
+}
+
+/*==============================*/
+/* #access                      */
+/*==============================*/
+
+.gmap {
+  height: 400px;
+  margin-top: 40px;
+  background: #eee;
+}
+
+.gmap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(100%); /* Make map black & white to fit theme */
+}
